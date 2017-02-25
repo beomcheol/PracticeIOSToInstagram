@@ -15,7 +15,7 @@ class LikedMedaCell: UICollectionViewCell {
     
     var instagramMedai: InstagramMedia? {
         didSet {
-            if let imageUrl = instagramMedai?.standardResolutionImageURL {
+            if let imageUrl = instagramMedai?.lowResolutionImageURL {
                 imageView.setImageWith(imageUrl)
             }
         }

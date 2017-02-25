@@ -35,19 +35,20 @@ class MainCollectionViewController: UICollectionViewController {
         performSegue(withIdentifier: "AuthViewController", sender: nil)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let mediaCollectionViewController = segue.destination as? MediaCollectionViewController {
+            mediaCollectionViewController.tagName = sender as? String
+        }
+        
+        if let detailMediaViewController = segue.destination as? DetailMediaViewController,
+            let cell = sender as? LikedMedaCell {
+            detailMediaViewController.instagramMedia = cell.instagramMedai
+        }
+    }
+    
     @IBAction func prepareUnwindSegue(for segue: UIStoryboardSegue) {
         loadLikeMedias()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 // MARK: - Private
@@ -82,7 +83,7 @@ private extension MainCollectionViewController {
     }
 }
 
-// MARK: UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension MainCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return instagramMedias.count
@@ -101,6 +102,9 @@ extension MainCollectionViewController {
                 self?.tagsHeaderHeight = height
             }
             header.tags = tags
+            header.tagPreesedClosure = { [weak self] tagName in
+                self?.performSegue(withIdentifier: "MediaCollectionViewController", sender: tagName)
+            }
             return header
         }
         
@@ -108,38 +112,7 @@ extension MainCollectionViewController {
     }
 }
 
-// MARK: UICollectionViewDelegate
-extension MainCollectionViewController {
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-}
-
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let columnCount = 5

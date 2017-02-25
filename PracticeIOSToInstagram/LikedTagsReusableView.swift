@@ -41,10 +41,12 @@ class LikedTagsReusableView: UICollectionReusableView {
     }
     
     var heightUpdateClosure: ((CGFloat) -> Void)?
+    
+    var tagPreesedClosure: ((String) -> Void)?
 }
 
 extension LikedTagsReusableView: TagListViewDelegate {
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) -> Void {
-        
+        tagPreesedClosure?(title)
     }
 }

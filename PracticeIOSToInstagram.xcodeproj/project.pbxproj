@@ -11,6 +11,8 @@
 		A5165B6A1E6199F500C35995 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5165B691E6199F500C35995 /* AuthViewController.swift */; };
 		A5165B6C1E61A11100C35995 /* LikedMedaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5165B6B1E61A11100C35995 /* LikedMedaCell.swift */; };
 		A5165B6E1E61A59700C35995 /* LikedTagsReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5165B6D1E61A59700C35995 /* LikedTagsReusableView.swift */; };
+		A5165B701E61EAB700C35995 /* MediaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5165B6F1E61EAB700C35995 /* MediaCollectionViewController.swift */; };
+		A5165B721E61EF4100C35995 /* DetailMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5165B711E61EF4100C35995 /* DetailMediaViewController.swift */; };
 		A57174AF1E40E6430076A55E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57174AE1E40E6430076A55E /* AppDelegate.swift */; };
 		A57174B41E40E6430076A55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A57174B21E40E6430076A55E /* Main.storyboard */; };
 		A57174B61E40E6430076A55E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A57174B51E40E6430076A55E /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		A5165B691E6199F500C35995 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		A5165B6B1E61A11100C35995 /* LikedMedaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedMedaCell.swift; sourceTree = "<group>"; };
 		A5165B6D1E61A59700C35995 /* LikedTagsReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedTagsReusableView.swift; sourceTree = "<group>"; };
+		A5165B6F1E61EAB700C35995 /* MediaCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewController.swift; sourceTree = "<group>"; };
+		A5165B711E61EF4100C35995 /* DetailMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMediaViewController.swift; sourceTree = "<group>"; };
 		A57174AB1E40E6420076A55E /* PracticeIOSToInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticeIOSToInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57174AE1E40E6430076A55E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A57174B31E40E6430076A55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				A5165B691E6199F500C35995 /* AuthViewController.swift */,
 				A5165B6B1E61A11100C35995 /* LikedMedaCell.swift */,
 				A5165B6D1E61A59700C35995 /* LikedTagsReusableView.swift */,
+				A5165B6F1E61EAB700C35995 /* MediaCollectionViewController.swift */,
+				A5165B711E61EF4100C35995 /* DetailMediaViewController.swift */,
 				A57174B21E40E6430076A55E /* Main.storyboard */,
 				A57174B51E40E6430076A55E /* Assets.xcassets */,
 				A57174B71E40E6430076A55E /* LaunchScreen.storyboard */,
@@ -225,7 +231,9 @@
 				A5165B6E1E61A59700C35995 /* LikedTagsReusableView.swift in Sources */,
 				A5165B6A1E6199F500C35995 /* AuthViewController.swift in Sources */,
 				A5165B6C1E61A11100C35995 /* LikedMedaCell.swift in Sources */,
+				A5165B721E61EF4100C35995 /* DetailMediaViewController.swift in Sources */,
 				A57174AF1E40E6430076A55E /* AppDelegate.swift in Sources */,
+				A5165B701E61EAB700C35995 /* MediaCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
