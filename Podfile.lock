@@ -14,22 +14,22 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (4.3.0)
   - InstagramKit (3.8):
     - AFNetworking (~> 3.0)
     - InstagramKit/Exclude-UICKeyChainStore (= 3.8)
   - InstagramKit/Exclude-UICKeyChainStore (3.8):
     - AFNetworking (~> 3.0)
+  - TagListView (1.1.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.3)
   - InstagramKit (~> 3.0)
+  - TagListView (~> 1.1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   InstagramKit: 402d6bba375357b548039de08eea19a1b8716354
+  TagListView: d0267a71393f3c73db5c9ea2f979ac1125fcab56
 
-PODFILE CHECKSUM: 89cd4fd4822c28ec9e56c20110062ef923f88b2f
+PODFILE CHECKSUM: 95133fd9f839183c97c2b37d52e36a17a85ffd57
 
 COCOAPODS: 1.2.0

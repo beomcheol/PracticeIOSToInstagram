@@ -4,6 +4,6 @@
 target 'PracticeIOSToInstagram' do
   use_frameworks!
   
-  pod 'Alamofire', '~> 4.3'
   pod 'InstagramKit', '~> 3.0'
+  pod 'TagListView', '~> 1.0'
 end

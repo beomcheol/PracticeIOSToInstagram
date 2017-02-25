@@ -13,8 +13,22 @@ private let reuseIdentifier = "LikedMedaCell"
 
 class MainCollectionViewController: UICollectionViewController {
     
-    var instagramMedias: [InstagramMedia] = []
-
+    var instagramMedias: [InstagramMedia] = [] {
+        didSet {
+            tags = makeCountedTags()
+        }
+    }
+    
+    var tags: [Tag] = []
+    
+    fileprivate var tagsHeaderHeight: CGFloat = 0 {
+        didSet {
+            if oldValue == 0 {
+                collectionView?.reloadData()
+            }
+        }
+    }
+    
     // Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +60,24 @@ private extension MainCollectionViewController {
             
         }
     }
+    
+    func makeCountedTags() -> [Tag] {
+        var tags: [Tag] = []
+        instagramMedias.forEach { media in
+            Array(media.tags as! NSArray).forEach { instagamTag in
+                if let tagName = instagamTag as? String {
+                    if let index = tags.index(of: Tag(name: tagName, count: 1)) {
+                        var updatedTag = tags.remove(at: index)
+                        updatedTag.count += 1
+                        tags.append(updatedTag)
+                    } else {
+                        tags.append(Tag(name: tagName, count: 1))
+                    }
+                }
+            }
+        }
+        return tags
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -58,6 +90,19 @@ extension MainCollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LikedMedaCell
         cell.instagramMedai = instagramMedias[indexPath.item]
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LikedTagsReusableView", for: indexPath) as! LikedTagsReusableView
+            header.heightUpdateClosure = { [weak self] height in
+                self?.tagsHeaderHeight = height
+            }
+            header.tags = tags
+            return header
+        }
+        
+        return UICollectionReusableView()
     }
 }
 
@@ -98,5 +143,9 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
         let columnCount = 5
         let width = (UIScreen.main.bounds.width - CGFloat(columnCount + 1)) / CGFloat(columnCount)
         return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: tagsHeaderHeight == 0 ? 1 : tagsHeaderHeight)
     }
 }
