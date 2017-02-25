@@ -7,28 +7,22 @@
 //
 
 import UIKit
+import InstagramKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "LikedMedaCell"
 
 class MainCollectionViewController: UICollectionViewController {
+    
+    var instagramMedias: [InstagramMedia] = []
 
+    // Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         performSegue(withIdentifier: "AuthViewController", sender: nil)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func prepareUnwindSegue(for segue: UIStoryboardSegue) {
+        loadLikeMedias()
     }
 
     /*
@@ -40,30 +34,35 @@ class MainCollectionViewController: UICollectionViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+// MARK: - Private
+private extension MainCollectionViewController {
+    func loadLikeMedias() {
+        InstagramEngine.shared().getMediaLikedBySelf(success: { [weak self] instagramMedias, paginationInfo in
+            self?.instagramMedias = instagramMedias
+            self?.collectionView?.reloadData()
+        }) { error, code in
+            
+        }
     }
+}
 
-
+// MARK: UICollectionViewDataSource
+extension MainCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return instagramMedias.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LikedMedaCell
+        cell.instagramMedai = instagramMedias[indexPath.item]
         return cell
     }
+}
 
-    // MARK: UICollectionViewDelegate
-
+// MARK: UICollectionViewDelegate
+extension MainCollectionViewController {
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -92,5 +91,12 @@ class MainCollectionViewController: UICollectionViewController {
     
     }
     */
+}
 
+extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let columnCount = 5
+        let width = (UIScreen.main.bounds.width - CGFloat(columnCount + 1)) / CGFloat(columnCount)
+        return CGSize(width: width, height: width)
+    }
 }

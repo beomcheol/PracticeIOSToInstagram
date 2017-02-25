@@ -30,8 +30,7 @@ extension AuthViewController: UIWebViewDelegate {
         if let url = request.url {
             do {
                 try InstagramEngine.shared().receivedValidAccessToken(from: url)
-//                modalTransitionStyle = .coverVertical
-                dismiss(animated: true, completion: nil)
+                performSegue(withIdentifier: "MainCollectionViewController", sender: nil)
                 return false
             } catch {
                 print(error)
