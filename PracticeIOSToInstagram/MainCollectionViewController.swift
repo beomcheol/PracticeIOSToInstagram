@@ -63,6 +63,7 @@ private extension MainCollectionViewController {
     
     func makeCountedTags() -> [Tag] {
         var tags: [Tag] = []
+        Tag.totalCount = 0
         instagramMedias.forEach { media in
             Array(media.tags as! NSArray).forEach { instagamTag in
                 if let tagName = instagamTag as? String {
@@ -73,6 +74,7 @@ private extension MainCollectionViewController {
                     } else {
                         tags.append(Tag(name: tagName, count: 1))
                     }
+                    Tag.totalCount += 1
                 }
             }
         }
@@ -141,7 +143,7 @@ extension MainCollectionViewController {
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let columnCount = 5
-        let width = (UIScreen.main.bounds.width - CGFloat(columnCount + 1)) / CGFloat(columnCount)
+        let width = (UIScreen.main.bounds.width - CGFloat(columnCount + 1 + 16)) / CGFloat(columnCount)
         return CGSize(width: width, height: width)
     }
     
