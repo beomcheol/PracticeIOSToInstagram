@@ -33,3 +33,8 @@ Just Macbook (팀으로 진행하며, 페어로 코딩을 할 것이기 때문�
 2. FOLK this repo to yours
 3. Register your new application to [Instagram API Platform](https://www.instagram.com/developer/)
 1. Burning Out!!
+
+#ON-SITE PHOTO
+<img src="https://raw.githubusercontent.com/beomcheol/PracticeIOSToInstagram/master/Screenshots/Image%20uploaded%20from%20iOS%20(5).jpg" width="480">
+<img src="https://raw.githubusercontent.com/beomcheol/PracticeIOSToInstagram/master/Screenshots/Image%20uploaded%20from%20iOS.jpg" width="480">
+<img src="https://raw.githubusercontent.com/beomcheol/PracticeIOSToInstagram/master/Screenshots/image_uploaded_from_ios-3.jpg" width="480">
